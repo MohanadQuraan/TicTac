@@ -1,170 +1,35 @@
 package com.example.assignmentfinaldraft;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.os.Handler;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
-public static int counter=0;
-    public static int score=0;
-    @Override
+    private Animation top;
+    private ImageView img2;
+    @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        top = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        img2 = findViewById(R.id.img2);
+        img2.setAnimation(top);
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                startActivity(intent);
+                finish(); // Finish the current activity
+            }
+        }, 3000);
     }
-    public void btnStartOnClick(View view) {
-
-        counter++;
-
-            QuestionDa objQuestion = new QuestionDa();
-        if(counter<4) {
-            Question question = objQuestion.getQuestion(counter);
-            if(counter>1){
-                Question precQuestion = objQuestion.getQuestion(counter-1);
-
-            if (precQuestion.getCorrectAnswer().equals(precQuestion.getAnswer1())) {
-                score++;
-            }
-                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-                progressBar.setProgress((counter-1)*33);
-
-            }
-            TextView tv = (TextView) findViewById(R.id.textView2);
-            Button btn1 = (Button) findViewById(R.id.btnStart);
-            Button btn2 = (Button) findViewById(R.id.btnAnswer1);
-            Button btn3 = (Button) findViewById(R.id.btnAnswer2);
-
-            tv.setText(question.getQuestion());
-            btn1.setText(question.getAnswer1());
-            btn2.setText(question.getAnswer2());
-            btn2.setVisibility(View.VISIBLE);
-            btn2.setVisibility(View.VISIBLE);
-            btn3.setText(question.getAnswer3());
-            btn3.setVisibility(View.VISIBLE);
-
-        }
-        else{
-            if(counter>1){
-                Question precQuestion = objQuestion.getQuestion(counter-1);
-
-                if (precQuestion.getCorrectAnswer().equals(precQuestion.getAnswer1())) {
-                    score++;
-                }}
-            TextView tv = (TextView) findViewById(R.id.textView2);
-            Button btn1 = (Button) findViewById(R.id.btnStart);
-            Button btn2 = (Button) findViewById(R.id.btnAnswer1);
-            Button btn3 = (Button) findViewById(R.id.btnAnswer2);
-            btn1.setVisibility(View.INVISIBLE);
-            btn2.setVisibility(View.INVISIBLE);
-            btn3.setVisibility(View.INVISIBLE);
-            tv.setText("Congarts! \nyou get "+score+" of 3 in the test!");
-            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-            progressBar.setProgress((counter-1)*34);
-
-        }
-
-    }
-    public void btnAnswer1OnClick(View view) {
-        counter++;
-
-            QuestionDa objQuestion = new QuestionDa();
-        if(counter<4) {
-            Question question = objQuestion.getQuestion(counter);
-            Question precQuestion = objQuestion.getQuestion(counter-1);
-
-            if (precQuestion.getCorrectAnswer().equals(precQuestion.getAnswer2())) {
-                score++;
-            }
-
-            TextView tv = (TextView) findViewById(R.id.textView2);
-            Button btn1 = (Button) findViewById(R.id.btnStart);
-            Button btn2 = (Button) findViewById(R.id.btnAnswer1);
-            Button btn3 = (Button) findViewById(R.id.btnAnswer2);
-            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-            progressBar.setProgress((counter-1)*33);
-
-
-            tv.setText(question.getQuestion());
-            btn1.setText(question.getAnswer1());
-            btn2.setText(question.getAnswer2());
-            btn2.setVisibility(View.VISIBLE);
-            btn2.setVisibility(View.VISIBLE);
-            btn3.setText(question.getAnswer3());
-            btn3.setVisibility(View.VISIBLE);
-        }
-   else{
-            Question precQuestion = objQuestion.getQuestion(counter-1);
-
-            if (precQuestion.getCorrectAnswer().equals(precQuestion.getAnswer2())) {
-                score++;
-            }
-            TextView tv = (TextView) findViewById(R.id.textView2);
-            Button btn1 = (Button) findViewById(R.id.btnStart);
-            Button btn2 = (Button) findViewById(R.id.btnAnswer1);
-            Button btn3 = (Button) findViewById(R.id.btnAnswer2);
-            btn1.setVisibility(View.INVISIBLE);
-            btn2.setVisibility(View.INVISIBLE);
-            btn3.setVisibility(View.INVISIBLE);
-            tv.setText("Congarts! \nyou get "+score+" of 3 in the test!");
-            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-            progressBar.setProgress((counter-1)*34);
-
-        }
-    }
-    public void btnAnswer2OnClick(View view) {
-        counter++;
-
-            QuestionDa objQuestion = new QuestionDa();
-        if(counter<4) {
-            Question question = objQuestion.getQuestion(counter);
-
-            Question precQuestion = objQuestion.getQuestion(counter-1);
-
-            if (precQuestion.getCorrectAnswer().equals(precQuestion.getAnswer3())) {
-                score++;
-            }
-
-            TextView tv = (TextView) findViewById(R.id.textView2);
-            Button btn1 = (Button) findViewById(R.id.btnStart);
-            Button btn2 = (Button) findViewById(R.id.btnAnswer1);
-            Button btn3 = (Button) findViewById(R.id.btnAnswer2);
-            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-            progressBar.setProgress((counter-1)*33);
-
-
-            tv.setText(question.getQuestion() );
-            btn1.setText(question.getAnswer1());
-            btn2.setText(question.getAnswer2());
-            btn2.setVisibility(View.VISIBLE);
-            btn2.setVisibility(View.VISIBLE);
-            btn3.setText(question.getAnswer3());
-            btn3.setVisibility(View.VISIBLE);
-        }
-   else{
-            Question precQuestion = objQuestion.getQuestion(counter-1);
-
-            if (precQuestion.getCorrectAnswer().equals(precQuestion.getAnswer3())) {
-                score++;
-            }
-
-            TextView tv = (TextView) findViewById(R.id.textView2);
-            Button btn1 = (Button) findViewById(R.id.btnStart);
-            Button btn2 = (Button) findViewById(R.id.btnAnswer1);
-            Button btn3 = (Button) findViewById(R.id.btnAnswer2);
-            btn1.setVisibility(View.INVISIBLE);
-            btn2.setVisibility(View.INVISIBLE);
-            btn3.setVisibility(View.INVISIBLE);
-            tv.setText("Congarts! \nyou get "+score+" of 3 in the test!");
-            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-            progressBar.setProgress((counter-1)*34);
-
-        }
-
-    }
-
 }

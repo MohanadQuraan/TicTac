@@ -2,25 +2,22 @@ package com.example.assignmentfinaldraft;
 
 public class Question {
 
-private int questionNum;
-private String question;
-private String answer1;
-private String answer2;
-private String answer3;
-private String correctAnswer;
+    private int questionNum;
+    private String question;
+
+    private Answers answer1;
+    private Answers answer2;
+    private Answers answer3;
+    private String correctAnswer;
 
 
-    public Question(int questionNum, String question, String answer1, String answer2, String answer3, String correctAnswer) {
+    public Question(int questionNum, String question, Answers answer1, Answers answer2, Answers answer3, String correctAnswer) {
         this.questionNum = questionNum;
         this.question = question;
         this.answer1 = answer1;
         this.answer2 = answer2;
         this.answer3 = answer3;
         this.correctAnswer = correctAnswer;
-    }
-
-    public Question() {
-
     }
 
     public int getQuestionNum() {
@@ -39,27 +36,27 @@ private String correctAnswer;
         this.question = question;
     }
 
-    public String getAnswer1() {
+    public Answers getAnswer1() {
         return answer1;
     }
 
-    public void setAnswer1(String answer1) {
+    public void setAnswer1(Answers answer1) {
         this.answer1 = answer1;
     }
 
-    public String getAnswer2() {
+    public Answers getAnswer2() {
         return answer2;
     }
 
-    public void setAnswer2(String answer2) {
+    public void setAnswer2(Answers answer2) {
         this.answer2 = answer2;
     }
 
-    public String getAnswer3() {
+    public Answers getAnswer3() {
         return answer3;
     }
 
-    public void setAnswer3(String answer3) {
+    public void setAnswer3(Answers answer3) {
         this.answer3 = answer3;
     }
 
@@ -71,4 +68,3 @@ private String correctAnswer;
         this.correctAnswer = correctAnswer;
     }
 }
-
